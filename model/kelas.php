@@ -30,6 +30,19 @@ function getDataKelasById($id) {
 
 function createDataKelas($datas) {
     global $conn;
+
+    $columnQuery = parseColumn();
+    $valueQuery = parseValue($datas);
+
+    $query = sprintf("INSERT INTO %s (%s)
+    VALUES (%s)", TABLE_NAME, $columnQuery, $valueQuery);
+
+    $stmt = $conn->query($query);
+    
+    return $stmt;
+}
+
+function parseColumn() {
     global $tableColumns;
 
     $columnQuery = '';
@@ -38,15 +51,15 @@ function createDataKelas($datas) {
     }
     $columnQuery = substr($columnQuery, 0, -2);
 
+    return $columnQuery;
+}
+
+function parseValue($datas) {
     $valueQuery = '';
     foreach ($datas as $value) {
         $valueQuery .= '\''.$value . '\', ';
     }
     $valueQuery = substr($valueQuery, 0, -2);
 
-    $query = sprintf("INSERT INTO %s (%s)
-    VALUES (%s)", TABLE_NAME, $columnQuery, $valueQuery);
-    $stmt = $conn->query($query);
-    
-    return $stmt;
+    return $valueQuery;
 }
