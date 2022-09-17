@@ -3,11 +3,6 @@
 include '../../model/kelas.php';
 
 $Datakelas = getDataKelas();
-
-while ($data = $Datakelas->fetch_assoc()) {
-    
-
-}
 ?>
 <!DOCTYPE html>
 <html>
