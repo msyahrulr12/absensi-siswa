@@ -22,7 +22,11 @@ $Datakelas = getDataKelas();
 		$id = 1;
 		foreach ($Datakelas as $da) { ?>
 			<tr>
-				<td><?php echo $id; ?></td>
+				<td>
+                    <a href="./show.php?id=<?=$id?>">
+                        <?php echo $id; ?>
+                    </a>
+                </td>
 				<td><?php echo $da["kelas"]; ?></td>
 				<td><?php echo $da["kode"]; ?></td>
 				
