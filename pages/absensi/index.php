@@ -3,11 +3,6 @@
 include '../../model/absensi.php';
 
 $DataAbsensi = getDataAbsensi();
-
-while ($data = $DataAbsensi->fetch_assoc()) {
-    
-
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,17 +18,28 @@ while ($data = $DataAbsensi->fetch_assoc()) {
 			<th>JAM KELUAR</th>
 			<th>TANGGAL</th>
 		</tr>
-		<?php 
-		$id = 1;
-		foreach ($DataAbsensi as $da) { ?>
-			<tr>
-				<td><?php echo $id; ?></td>
-				<td><?php echo $da["jam_masuk"]; ?></td>
-				<td><?php echo $da["jam_keluar"]; ?></td>
-				<td><?php echo $da["tanggal"]; ?></td>
-			</tr>
-		<?php } ?>
-		<?php $id++; ?>
+
+        <?php
+            if ($DataAbsensi->num_rows > 0) {
+                $id = 1;
+                foreach ($DataAbsensi as $da):
+        ?>
+            <tr>
+                <td><?php echo $id++; ?></td>
+                <td><?php echo $da["jam_masuk"]; ?></td>
+                <td><?php echo $da["jam_keluar"]; ?></td>
+                <td><?php echo $da["tanggal"]; ?></td>
+            </tr>
+        <?php
+                endforeach;
+            } else {
+        ?>
+            <tr>
+                <td colspan="4" style="text-align: center;">Tidak ada data</td>
+            </tr>
+        <?php
+            }
+        ?>
 	</table>
 
 
