@@ -1,12 +1,9 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "mnka#2718";
-$database = "absensi_siswa";
+include dirname(__DIR__).'/parameter.php';
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli($data['servername'], $data['username'], $data['password'], $data['database']);
 
 // Check connection
 if ($conn->connect_error) {
